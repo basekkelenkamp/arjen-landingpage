@@ -118,6 +118,7 @@ header {
 }
 
 .artist-name {
+    font-family: 'Arial Rounded MT Bold', system-ui, sans-serif;
     font-size: 1.2rem;
     letter-spacing: 8px;
     font-weight: 300;
@@ -128,6 +129,7 @@ header {
 }
 
 .album-title {
+    font-family: 'Arial Rounded MT Bold', system-ui, sans-serif;
     font-size: 7rem;
     font-weight: 900;
     letter-spacing: -3px;
