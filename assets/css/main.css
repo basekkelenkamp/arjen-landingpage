@@ -1,0 +1,469 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Baloo 2', system-ui, sans-serif;
+    background: #f8f8f8;
+    color: #1a1a1a;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Kleurachtergrond - duidelijk zichtbaar */
+.color-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.5;
+    background: 
+        radial-gradient(circle at 15% 25%, rgba(255, 165, 100, 0.9) 0%, transparent 35%),
+        radial-gradient(circle at 85% 30%, rgba(100, 200, 200, 0.8) 0%, transparent 35%),
+        radial-gradient(circle at 50% 70%, rgba(180, 140, 200, 0.8) 0%, transparent 40%),
+        radial-gradient(circle at 30% 80%, rgba(255, 200, 100, 0.7) 0%, transparent 30%),
+        radial-gradient(circle at 70% 15%, rgba(255, 100, 120, 0.6) 0%, transparent 35%);
+    animation: colorShift 20s ease-in-out infinite;
+}
+
+@keyframes colorShift {
+    0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33% { transform: translate(60px, -80px) scale(1.2) rotate(5deg); }
+    66% { transform: translate(-70px, 60px) scale(1.15) rotate(-5deg); }
+}
+
+/* Witte mist overlay - dik en zichtbaar bewegend */
+.fog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.85;
+    background: 
+        radial-gradient(ellipse 800px 600px at 20% 20%, rgba(255, 255, 255, 0.95) 0%, transparent 55%),
+        radial-gradient(ellipse 700px 700px at 80% 30%, rgba(250, 250, 255, 0.9) 0%, transparent 60%),
+        radial-gradient(ellipse 900px 500px at 40% 70%, rgba(255, 255, 255, 0.95) 0%, transparent 55%),
+        radial-gradient(ellipse 600px 800px at 70% 80%, rgba(252, 252, 255, 0.85) 0%, transparent 55%),
+        radial-gradient(ellipse 1000px 600px at 50% 50%, rgba(255, 255, 255, 0.8) 0%, transparent 65%);
+    animation: mistDrift 12s ease-in-out infinite;
+}
+
+/* Gekleurde mist - meer zichtbaar */
+.colored-mist {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 6;
+    opacity: 0.4;
+    background: 
+        radial-gradient(ellipse 600px 500px at 30% 40%, rgba(255, 180, 120, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse 500px 600px at 70% 60%, rgba(120, 200, 200, 0.55) 0%, transparent 50%),
+        radial-gradient(ellipse 700px 400px at 50% 30%, rgba(180, 150, 200, 0.5) 0%, transparent 55%),
+        radial-gradient(ellipse 400px 500px at 80% 70%, rgba(255, 200, 100, 0.45) 0%, transparent 50%);
+    animation: colorMistDrift 16s ease-in-out infinite reverse;
+}
+
+@keyframes mistDrift {
+    0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    25% { transform: translate(120px, -100px) scale(1.3) rotate(3deg); }
+    50% { transform: translate(-110px, 120px) scale(1.25) rotate(-3deg); }
+    75% { transform: translate(90px, 90px) scale(1.28) rotate(2deg); }
+}
+
+@keyframes colorMistDrift {
+    0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    33% { transform: translate(-100px, 110px) scale(1.2) rotate(-4deg); }
+    66% { transform: translate(110px, -100px) scale(1.18) rotate(4deg); }
+}
+
+.container {
+    position: relative;
+    z-index: 3;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 60px 0 40px;
+    animation: floatDisorient 1.8s ease-out;
+    transform-style: preserve-3d;
+}
+
+@keyframes floatDisorient {
+    0% {
+        opacity: 0;
+        transform: translateY(80px) translateZ(-200px) scale(0.7);
+    }
+    60% {
+        opacity: 0.5;
+        transform: translateY(-20px) translateZ(-50px) scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateZ(0) scale(1);
+    }
+}
+
+.artist-name {
+    font-size: 1.2rem;
+    letter-spacing: 8px;
+    font-weight: 300;
+    color: #444;
+    margin-bottom: 20px;
+    animation: letterFloat 1.8s ease-out 0.2s backwards, subtleFloat 6s ease-in-out 2s infinite;
+    text-shadow: 0 10px 30px rgba(255,255,255,0.8);
+}
+
+.album-title {
+    font-size: 7rem;
+    font-weight: 900;
+    letter-spacing: -3px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+    animation: titleDisorient 2s ease-out 0.4s backwards, deepFloat 8s ease-in-out 2.5s infinite;
+    text-shadow: 
+        0 20px 60px rgba(255,255,255,0.9),
+        0 5px 15px rgba(0,0,0,0.1);
+    transform-style: preserve-3d;
+}
+
+@keyframes titleDisorient {
+    0% {
+        opacity: 0;
+        transform: translateY(150px) translateZ(-400px) scale(0.4);
+        letter-spacing: 40px;
+    }
+    70% {
+        opacity: 0.6;
+        transform: translateY(-30px) translateZ(-100px) scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateZ(0) scale(1);
+        letter-spacing: -3px;
+    }
+}
+
+@keyframes letterFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(60px) translateZ(-150px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+}
+
+@keyframes subtleFloat {
+    0%, 100% {
+        transform: translateY(0) translateZ(0);
+    }
+    50% {
+        transform: translateY(-15px) translateZ(-30px);
+    }
+}
+
+@keyframes deepFloat {
+    0%, 100% {
+        transform: translateY(0) translateZ(0) scale(1);
+    }
+    33% {
+        transform: translateY(-20px) translateZ(-60px) scale(1.02);
+    }
+    66% {
+        transform: translateY(10px) translateZ(30px) scale(0.98);
+    }
+}
+
+.release-info {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 10px;
+    animation: letterFloat 1.8s ease-out 0.6s backwards, subtleFloat 7s ease-in-out 3s infinite;
+    text-shadow: 0 8px 20px rgba(255,255,255,0.7);
+}
+
+.track-count {
+    font-size: 0.9rem;
+    color: #777;
+    letter-spacing: 2px;
+    animation: letterFloat 1.8s ease-out 0.8s backwards, subtleFloat 6.5s ease-in-out 3.5s infinite;
+    text-shadow: 0 6px 15px rgba(255,255,255,0.6);
+}
+
+.album-art {
+    margin: 60px auto;
+    max-width: 500px;
+    aspect-ratio: 1;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 30px 80px rgba(255,255,255,0.9),
+        0 10px 40px rgba(0,0,0,0.15),
+        0 0 150px rgba(255,255,255,0.7);
+    animation: artworkFloat 2s ease-out 1s backwards, artworkDepth 10s ease-in-out 3s infinite;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+@keyframes artworkFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) translateZ(-300px) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateZ(0) scale(1);
+    }
+}
+
+@keyframes artworkDepth {
+    0%, 100% {
+        transform: translateZ(0) scale(1);
+        box-shadow: 
+            0 30px 80px rgba(255,255,255,0.9),
+            0 10px 40px rgba(0,0,0,0.15),
+            0 0 150px rgba(255,255,255,0.7);
+    }
+    50% {
+        transform: translateZ(-80px) scale(1.05);
+        box-shadow: 
+            0 50px 120px rgba(255,255,255,1),
+            0 20px 60px rgba(0,0,0,0.1),
+            0 0 200px rgba(255,255,255,0.9);
+    }
+}
+
+.album-art:hover {
+    box-shadow: 
+        0 40px 100px rgba(255,255,255,1),
+        0 15px 50px rgba(0,0,0,0.2),
+        0 0 180px rgba(255,255,255,0.8);
+    transform: translateY(-10px) translateZ(-50px);
+}
+
+.album-art.has-image {
+    background: #fff;
+}
+
+.album-art.dragover {
+    border-color: #666;
+    box-shadow: 
+        0 15px 50px rgba(0,0,0,0.25),
+        0 0 150px rgba(100,100,100,0.4);
+}
+
+#artwork-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#artwork-image.visible {
+    display: block;
+}
+
+.album-art::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: 
+        radial-gradient(circle at 40% 40%, rgba(255,255,255,0.4) 0%, transparent 50%);
+    animation: shimmer 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+    50% { transform: translate(-30%, -30%); opacity: 0.5; }
+}
+
+.album-art-text {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    color: #ddd;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.upload-hint {
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.85rem;
+    color: #999;
+    letter-spacing: 1px;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.album-art:hover .upload-hint {
+    color: #666;
+}
+
+.theme-text {
+    text-align: center;
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 0 20px;
+    animation: textFloat 2s ease-out 1.3s backwards, textDepth 9s ease-in-out 3.5s infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes textFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(80px) translateZ(-250px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateZ(0) scale(1);
+    }
+}
+
+@keyframes textDepth {
+    0%, 100% {
+        transform: translateZ(0);
+    }
+    50% {
+        transform: translateZ(-50px);
+    }
+}
+
+.theme-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 15px;
+    text-shadow: 0 5px 15px rgba(255,255,255,0.6);
+}
+
+.theme-text .highlight {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.cta-section {
+    text-align: center;
+    margin: 80px 0 60px;
+    animation: textFloat 2s ease-out 1.6s backwards, subtleFloat 7.5s ease-in-out 4s infinite;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 16px 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: #1a1a1a;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.btn-primary:hover {
+    background: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
+}
+
+.btn-secondary:hover {
+    background: #1a1a1a;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.connection {
+    text-align: center;
+    margin: 80px 0 40px;
+    padding: 40px 20px;
+    border-top: 1px solid #ddd;
+    animation: textFloat 2s ease-out 1.9s backwards, subtleFloat 8s ease-in-out 4.5s infinite;
+}
+
+.connection-label {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+.connection-title {
+    font-size: 1.5rem;
+    color: #555;
+    font-weight: 300;
+    letter-spacing: 4px;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #aaa;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+}
+
+@media (max-width: 768px) {
+    .album-title {
+        font-size: 4rem;
+    }
+    
+    .album-art {
+        max-width: 90%;
+    }
+    
+    .album-art-text {
+        font-size: 2.5rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 80%;
+        max-width: 300px;
+    }
+}
