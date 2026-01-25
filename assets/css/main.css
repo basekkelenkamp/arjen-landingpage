@@ -119,7 +119,7 @@ header {
 
 .artist-name {
     font-family: 'Arial Rounded MT Bold', system-ui, sans-serif;
-    font-size: 1.2rem;
+    font-size: 2.0rem;
     letter-spacing: 8px;
     font-weight: 300;
     color: #444;
@@ -192,7 +192,7 @@ header {
 }
 
 .release-info {
-    font-size: 1.1rem;
+    font-size: 1.6rem;
     color: #555;
     margin-bottom: 10px;
     animation: letterFloat 1.8s ease-out 0.6s backwards, subtleFloat 7s ease-in-out 3s infinite;
@@ -468,4 +468,82 @@ footer {
         width: 80%;
         max-width: 300px;
     }
+}
+
+.prev-album-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px 0;
+}
+
+.prev-album-text {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: textFloat 2s ease-out 2s backwards, textDepth 9s ease-in-out 3s infinite;
+    text-shadow: 0 5px 15px rgba(255,255,255,0.6);
+}
+
+.spotify-embed {
+    width: 80%;
+    max-width: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    animation: embedFloat 2s ease-out 2.2s backwards, embedDepth 10s ease-in-out 3s infinite;
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.1),
+        0 0 100px rgba(255,255,255,0.1);
+}
+
+.spotify-embed iframe {
+    width: 100%;
+    height: 352px;
+    border: none;
+    display: block;
+}
+
+
+@keyframes embedFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(80px) translateZ(-250px) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateZ(0) scale(1);
+    }
+}
+
+@keyframes embedDepth {
+    0%, 100% {
+        transform: translateZ(0) scale(1);
+    }
+    50% {
+        transform: translateZ(-40px) scale(1.03);
+    }
+}
+
+.coming-soon-btn {
+    display: inline-block;
+    padding: 16px 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    background: linear-gradient(135deg, #ff7a5c, #ffb86c);
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(255, 120, 92, 0.4), 0 5px 15px rgba(0,0,0,0.1);
+    cursor: not-allowed;
+    animation: embedFloat 2s ease-out 1.5s backwards, embedDepth 10s ease-in-out 3s infinite;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.coming-soon-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(255, 120, 92, 0.5), 0 10px 20px rgba(0,0,0,0.1);
 }
